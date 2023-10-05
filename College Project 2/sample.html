@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Form</title>
+<link rel="stylesheet" href="/sample.css">
+
+            
+</head>
+<body>
+    <div class="Container">
+    <Form method="post" action="order.php">
+        <h1 class="main_heading">Confirm Order</h1><hr>
+        <h2 class="user">User Information</h2>
+        <p>Name:<input type="text" required placeholder="aaaksh patil"></p>
+        
+       <fieldset> 
+        <legend>Gender</legend>
+        <p>Male<input type="radio" name="Gender" id="Male">Female <input type="radio" name="Gender" id="">
+        </p>  
+        </fieldset>
+        <p>Address 
+            <textarea name="Address" id="" cols="100" rows="10"></textarea>
+        </p>
+        <p>Email <input type="email" name="Email" id=""></p>
+        <p>Pincode <input type="number" name="Pincode" id=""></p>
+        
+        <input type="submit" value="Submit">
+    </Form>
+    <?php
+    $conn = mysqli_connect('127.0.0.1','root','','user_data');
+    if(isset($_POST['add'])){
+        $name = $_POST['Name'];
+        $Gender = $_POST['Gender'];
+        $Address = $_POST['Address'];
+        $pincode = $_POST['Pincode'];
+
+        $select = " SELECT * FROM `login` WHERE `name` = '$name' && `password` = '$pass' ";
+
+        $result = mysqli_query($conn,$select);
+
+        if(mysqli_num_rows($result) > 0){
+            $error[] = "user already exists!";
+
+        }else{
+            if($pass != $c_pass){
+                $error[] = "password not match"; 
+            }else{
+                $qurey = "INSERT INTO `login`( `name`, `mobile`,`password`) VALUES ('$name','$mobile','$pass')";
+                mysqli_query($conn,$qurey);
+                header('location:success.php');
+            }
+        }
+
+        
+    }
+
+   
+?>
+    
+    </div>
+</body>
+</html>
+

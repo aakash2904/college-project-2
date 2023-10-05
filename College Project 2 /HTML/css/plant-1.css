@@ -1,0 +1,13 @@
+.plant-1 .card .card-img-top{
+    width:30%;
+    height: 100%;
+    padding:10px;
+    flex-direction: column;
+}
+.plant{
+    color: #333;
+}
+.card-text{
+    flex:1 1 40rem;
+}
+
